@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>北京→呼和浩特 | 三天两晚团建攻略</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
   :root{
     --gold:#c9a86a;
@@ -513,6 +514,69 @@
     cursor:pointer;
     font-weight:700;
   }
+
+  /* ROUTE MAP */
+  .map-day-toggle{
+    display:flex;
+    gap:8px;
+    margin-bottom:14px;
+  }
+  .map-day-btn{
+    flex:1;
+    text-align:center;
+    padding:9px 6px;
+    font-size:12.5px;
+    font-weight:700;
+    color:var(--text-dim);
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    cursor:pointer;
+  }
+  .map-day-btn.active{
+    color:var(--bg);
+    background:var(--gold);
+    border-color:var(--gold);
+  }
+  .map-wrap{
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    height:360px;
+  }
+  #routeMap{
+    width:100%;
+    height:100%;
+    background:var(--bg-card);
+  }
+  .map-legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:12px;
+  }
+  .map-legend .tag{font-size:11.5px;}
+  .leaflet-popup-content-wrapper{
+    background:var(--bg-card2);
+    color:var(--text);
+    border-radius:10px;
+  }
+  .leaflet-popup-tip{background:var(--bg-card2);}
+  .leaflet-popup-content{
+    font-size:13px;
+    margin:10px 12px;
+  }
+  .leaflet-popup-content b{color:var(--gold-light);}
+  .leaflet-control-zoom a{
+    background:var(--bg-card) !important;
+    color:var(--gold-light) !important;
+    border-color:var(--line) !important;
+  }
+  .leaflet-control-attribution{
+    background:rgba(15,15,18,0.7) !important;
+    color:var(--text-dim) !important;
+  }
+  .leaflet-control-attribution a{color:var(--gold-light) !important;}
 </style>
 </head>
 <body>
@@ -908,6 +972,21 @@
       </div>
     </div>
 
+    <!-- ROUTE MAP -->
+    <div class="section">
+      <div class="section-label">Route Map</div>
+      <div class="section-title">路线地图</div>
+      <div class="map-day-toggle">
+        <div class="map-day-btn active" data-mapday="1">DAY 1</div>
+        <div class="map-day-btn" data-mapday="2">DAY 2</div>
+        <div class="map-day-btn" data-mapday="3">DAY 3</div>
+      </div>
+      <div class="map-wrap">
+        <div id="routeMap"></div>
+      </div>
+      <div class="map-legend" id="mapLegend"></div>
+    </div>
+
     <!-- WEATHER -->
     <div class="section">
       <div class="section-label">Weather</div>
@@ -1075,6 +1154,78 @@
       });
     }, {rootMargin:'-50% 0px -45% 0px'});
     dayBlocks.forEach(function(block){ dayObserver.observe(block); });
+  </script>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    var routeData = {
+      1: [
+        {name:'达拉特旗', lat:40.40, lng:110.03, desc:'集合·入住·午餐'},
+        {name:'响沙湾景区', lat:40.27, lng:110.13, desc:'沙漠日落专场'}
+      ],
+      2: [
+        {name:'达拉特旗', lat:40.40, lng:110.03, desc:'出发'},
+        {name:'大召寺', lat:40.806, lng:111.654, desc:'人文参观'},
+        {name:'内蒙古博物院', lat:40.825, lng:111.715, desc:'人文参观（二选一）'},
+        {name:'水磨村·大青山步道', lat:40.92, lng:111.75, desc:'森林避暑'},
+        {name:'红石崖国家生态公园', lat:41.03, lng:111.79, desc:'丹霞日落'},
+        {name:'呼和浩特新城区', lat:40.84, lng:111.75, desc:'住宿'}
+      ],
+      3: [
+        {name:'呼和浩特新城区', lat:40.84, lng:111.75, desc:'出发'},
+        {name:'黄花窝铺高山草原', lat:41.05, lng:111.85, desc:'敕勒川深度游'},
+        {name:'呼和浩特东站', lat:40.806, lng:111.811, desc:'返程'}
+      ]
+    };
+
+    var map = L.map('routeMap', {zoomControl:true, attributionControl:true}).setView([40.6, 111.2], 7);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO',
+      maxZoom: 18
+    }).addTo(map);
+
+    var goldIcon = function(num){
+      return L.divIcon({
+        className: 'route-marker',
+        html: '<div style="background:#c9a86a;color:#0f0f12;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;border:2px solid #0f0f12;box-shadow:0 0 0 1px #c9a86a;">' + num + '</div>',
+        iconSize:[26,26],
+        iconAnchor:[13,13]
+      });
+    };
+
+    var markersLayer = L.layerGroup().addTo(map);
+    var legendEl = document.getElementById('mapLegend');
+
+    function renderMapDay(day){
+      markersLayer.clearLayers();
+      legendEl.innerHTML = '';
+      var points = routeData[day];
+      var latlngs = [];
+      points.forEach(function(p, i){
+        var ll = [p.lat, p.lng];
+        latlngs.push(ll);
+        L.marker(ll, {icon: goldIcon(i+1)})
+          .addTo(markersLayer)
+          .bindPopup('<b>' + p.name + '</b><br>' + p.desc);
+        var tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = (i+1) + '. ' + p.name;
+        legendEl.appendChild(tag);
+      });
+      L.polyline(latlngs, {color:'#c9a86a', weight:3, opacity:0.8, dashArray:'6 6'}).addTo(markersLayer);
+      var bounds = L.latLngBounds(latlngs);
+      map.flyToBounds(bounds, {padding:[40,40], duration:1.2});
+    }
+
+    renderMapDay(1);
+
+    document.querySelectorAll('.map-day-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.map-day-btn').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        renderMapDay(btn.getAttribute('data-mapday'));
+      });
+    });
   </script>
 
 </body>
