@@ -488,9 +488,40 @@
     color:var(--gold-light);
     border-bottom-color:var(--gold);
   }
+
+  /* WECHAT HINT */
+  .wx-hint{
+    display:none;
+    background:var(--gold);
+    color:#2a210f;
+    font-size:12.5px;
+    font-weight:600;
+    padding:10px 16px;
+    text-align:center;
+    line-height:1.5;
+    position:relative;
+  }
+  .wx-hint.show{display:block;}
+  .wx-hint-close{
+    position:absolute;
+    right:10px;
+    top:50%;
+    transform:translateY(-50%);
+    width:22px;height:22px;
+    line-height:22px;
+    text-align:center;
+    cursor:pointer;
+    font-weight:700;
+  }
 </style>
 </head>
 <body>
+
+  <!-- WECHAT HINT -->
+  <div class="wx-hint" id="wxHint">
+    点击"📍导航"无法打开地图 App？点右上角 <b>· · ·</b> → 选择"<b>在浏览器打开</b>"即可
+    <span class="wx-hint-close" id="wxHintClose">✕</span>
+  </div>
 
   <!-- QUICK NAV -->
   <div class="quicknav" id="quicknav">
@@ -590,7 +621,7 @@
           <div class="t-card">
             <div class="h4-row">
               <h4>集合 · 入住 · 午餐</h4>
-              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E8%BE%BE%E6%8B%89%E7%89%B9%E6%97%97" target="_blank" rel="noopener">📍 导航</a>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E8%BE%BE%E6%8B%89%E7%89%B9%E6%97%97" onclick="return gotoNav('达拉特旗', this)">📍 导航</a>
             </div>
             <ul>
               <li>集合地点：达拉特旗，办理酒店入住，酒店午休</li>
@@ -605,7 +636,7 @@
           <div class="t-card">
             <div class="h4-row">
               <h4>响沙湾景区（营业时间 8:30-19:00）</h4>
-              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%93%8D%E6%B2%99%E6%B9%BE%E6%99%AF%E5%8C%BA" target="_blank" rel="noopener">📍 导航</a>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%93%8D%E6%B2%99%E6%B9%BE%E6%99%AF%E5%8C%BA" onclick="return gotoNav('响沙湾景区', this)">📍 导航</a>
             </div>
             <div class="price-box">
               <div class="price-chip">
@@ -687,8 +718,8 @@
               <h4>大召寺 / 内蒙古博物院（二选一）</h4>
             </div>
             <div class="tag-row" style="margin-bottom:8px;">
-              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%A4%A7%E5%8F%AC%E5%AF%BA" target="_blank" rel="noopener">📍 大召寺导航</a>
-              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%86%85%E8%92%99%E5%8F%A4%E5%8D%9A%E7%89%A9%E9%99%A2" target="_blank" rel="noopener">📍 博物院导航</a>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%A4%A7%E5%8F%AC%E5%AF%BA" onclick="return gotoNav('大召寺', this)">📍 大召寺导航</a>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%86%85%E8%92%99%E5%8F%A4%E5%8D%9A%E7%89%A9%E9%99%A2" onclick="return gotoNav('内蒙古博物院', this)">📍 博物院导航</a>
             </div>
             <div class="price-box">
               <div class="price-chip">
@@ -712,7 +743,7 @@
           <div class="t-card">
             <div class="h4-row">
               <h4>市区午餐</h4>
-              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E6%A0%BC%E6%97%A5%E5%8B%92%E9%98%BF%E5%A6%88%E5%A5%B6%E8%8C%B6%E9%A6%86" target="_blank" rel="noopener">📍 导航</a>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E6%A0%BC%E6%97%A5%E5%8B%92%E9%98%BF%E5%A6%88%E5%A5%B6%E8%8C%B6%E9%A6%86" onclick="return gotoNav('格日勒阿妈奶茶馆', this)">📍 导航</a>
             </div>
             <ul><li>推荐格日勒阿妈奶茶馆，咸奶茶锅+黄油饼+奶皮子酸奶，人均40元</li></ul>
           </div>
@@ -723,7 +754,7 @@
           <div class="t-card">
             <div class="h4-row">
               <h4>大青山国家登山健身步道</h4>
-              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E6%B0%B4%E7%A3%A8%E6%9D%91" target="_blank" rel="noopener">📍 导航</a>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E6%B0%B4%E7%A3%A8%E6%9D%91" onclick="return gotoNav('水磨村', this)">📍 导航</a>
             </div>
             <ul>
               <li>导航：水磨村入口，距市区20公里，30分钟车程；停车10元/天</li>
@@ -751,7 +782,7 @@
           <div class="t-card">
             <div class="h4-row">
               <h4>红石崖国家生态公园（日落专场）</h4>
-              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E7%BA%A2%E7%9F%B3%E5%B4%96%E5%9B%BD%E5%AE%B6%E7%94%9F%E6%80%81%E5%85%AC%E5%9B%AD" target="_blank" rel="noopener">📍 导航</a>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E7%BA%A2%E7%9F%B3%E5%B4%96%E5%9B%BD%E5%AE%B6%E7%94%9F%E6%80%81%E5%85%AC%E5%9B%AD" onclick="return gotoNav('红石崖国家生态公园', this)">📍 导航</a>
             </div>
             <div class="price-box">
               <div class="price-chip">
@@ -779,7 +810,7 @@
           <div class="t-card">
             <div class="h4-row">
               <h4>返回呼和浩特市区</h4>
-              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%91%BC%E5%92%8C%E6%B5%A9%E7%89%B9%E5%B8%82%E6%96%B0%E5%9F%8E%E5%8C%BA" target="_blank" rel="noopener">📍 导航</a>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%91%BC%E5%92%8C%E6%B5%A9%E7%89%B9%E5%B8%82%E6%96%B0%E5%9F%8E%E5%8C%BA" onclick="return gotoNav('呼和浩特市新城区', this)">📍 导航</a>
             </div>
             <ul><li>20:30 入住新城区酒店，晚餐（喝酒吹牛专场）</li></ul>
           </div>
@@ -805,7 +836,7 @@
           <div class="t-card">
             <div class="h4-row">
               <h4>早餐</h4>
-              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%BE%B7%E9%A1%BA%E6%BA%90%E7%83%A7%E5%96%A4" target="_blank" rel="noopener">📍 导航</a>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%BE%B7%E9%A1%BA%E6%BA%90%E7%83%A7%E9%BA%A6" onclick="return gotoNav('德顺源烧麦', this)">📍 导航</a>
             </div>
             <ul><li>推荐德顺源烧麦，一两8个纯羊肉烧麦，皮薄爆汁，人均30元</li></ul>
           </div>
@@ -816,7 +847,7 @@
           <div class="t-card">
             <div class="h4-row">
               <h4>敕勒川高山草原深度游</h4>
-              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E9%BB%84%E8%8A%B1%E7%AA%9D%E9%93%BA%E9%AB%98%E5%B1%B1%E8%8D%89%E5%8E%9F" target="_blank" rel="noopener">📍 导航</a>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E9%BB%84%E8%8A%B1%E7%AA%9D%E9%93%BA%E9%AB%98%E5%B1%B1%E8%8D%89%E5%8E%9F" onclick="return gotoNav('黄花窝铺高山草原', this)">📍 导航</a>
             </div>
             <ul>
               <li>08:00-08:40 自驾前往（30公里，40分钟，导航"黄花窝铺高山草原"）</li>
@@ -847,7 +878,7 @@
           <div class="t-card">
             <div class="h4-row">
               <h4>草原附近午餐</h4>
-              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E9%BB%84%E8%8A%B1%E7%AA%9D%E9%93%BA%E8%92%99%E5%8F%A4%E5%8C%85%E9%A4%90%E5%8E%85" target="_blank" rel="noopener">📍 导航</a>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E9%BB%84%E8%8A%B1%E7%AA%9D%E9%93%BA%E8%92%99%E5%8F%A4%E5%8C%85%E9%A4%90%E5%8E%85" onclick="return gotoNav('黄花窝铺蒙古包餐厅', this)">📍 导航</a>
             </div>
             <ul><li>推荐蒙古包餐厅，现杀羊肉串、野韭菜炒鸡蛋，人均50元</li></ul>
           </div>
@@ -863,7 +894,7 @@
             </ul>
             <div class="h4-row" style="margin-top:10px;">
               <h4>高铁</h4>
-              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%91%BC%E5%92%8C%E6%B5%A9%E7%89%B9%E4%B8%9C%E7%AB%99" target="_blank" rel="noopener">📍 呼和浩特东站导航</a>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%91%BC%E5%92%8C%E6%B5%A9%E7%89%B9%E4%B8%9C%E7%AB%99" onclick="return gotoNav('呼和浩特东站', this)">📍 呼和浩特东站导航</a>
             </div>
             <ul>
               <li>13:30-14:10 自驾返回呼和浩特东站（30公里，40分钟）</li>
@@ -957,6 +988,42 @@
   </div>
 
   <script>
+    (function(){
+      var isWeChat = /MicroMessenger/i.test(navigator.userAgent);
+      var hint = document.getElementById('wxHint');
+      if(isWeChat && !localStorage.getItem('wxHintDismissed')){
+        hint.classList.add('show');
+      }
+      document.getElementById('wxHintClose').addEventListener('click', function(){
+        hint.classList.remove('show');
+        localStorage.setItem('wxHintDismissed', '1');
+      });
+    })();
+
+    function gotoNav(keyword, el){
+      var ua = navigator.userAgent;
+      var isIOS = /iPhone|iPad|iPod/i.test(ua);
+      var isAndroid = /Android/i.test(ua);
+      var webUrl = 'https://uri.amap.com/search?keyword=' + encodeURIComponent(keyword);
+      if(!isIOS && !isAndroid){
+        return true; // desktop: let default href open normally
+      }
+      var schemeUrl = isIOS
+        ? 'iosamap://search?keyword=' + encodeURIComponent(keyword) + '&sourceApplication=hhhtTrip'
+        : 'androidamap://search?keyword=' + encodeURIComponent(keyword) + '&sourceApplication=hhhtTrip';
+      var fallbackTimer = setTimeout(function(){
+        window.location.href = webUrl;
+      }, 1200);
+      document.addEventListener('visibilitychange', function onHide(){
+        if(document.hidden){
+          clearTimeout(fallbackTimer);
+          document.removeEventListener('visibilitychange', onHide);
+        }
+      });
+      window.location.href = schemeUrl;
+      return false;
+    }
+
     document.querySelectorAll('[data-jump]').forEach(function(el){
       el.addEventListener('click', function(){
         var target = document.getElementById(el.getAttribute('data-jump'));
