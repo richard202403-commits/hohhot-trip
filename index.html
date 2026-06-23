@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>北京→呼和浩特 | 三天两晚团建攻略</title>
+<style>
+  :root{
+    --gold:#c9a86a;
+    --gold-light:#e8d5a8;
+    --bg:#0f0f12;
+    --bg-card:#17171c;
+    --bg-card2:#1d1d23;
+    --text:#f2efe9;
+    --text-dim:#a8a5a0;
+    --line:#2a2a30;
+    --accent-desert:#d98a4f;
+    --accent-grass:#7a9d6b;
+    --accent-danxia:#c1583a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{width:100%;display:block;object-fit:cover;}
+  a{color:inherit;}
+
+  .container{max-width:560px;margin:0 auto;padding:0 20px;}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    height:78vh;
+    min-height:480px;
+    display:flex;
+    align-items:flex-end;
+    overflow:hidden;
+  }
+  .hero img{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    filter:brightness(0.55) saturate(1.1);
+  }
+  .hero::after{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(15,15,18,0) 0%, rgba(15,15,18,0.2) 40%, rgba(15,15,18,0.95) 100%);
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    padding:0 20px 36px;
+    width:100%;
+  }
+  .hero-eyebrow{
+    font-size:12px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--gold-light);
+    margin-bottom:14px;
+    font-weight:600;
+  }
+  .hero h1{
+    font-size:34px;
+    font-weight:700;
+    line-height:1.25;
+    margin-bottom:10px;
+    letter-spacing:0.5px;
+  }
+  .hero h1 .arrow{color:var(--gold);}
+  .hero-sub{
+    font-size:14px;
+    color:var(--text-dim);
+    letter-spacing:1px;
+  }
+
+  /* HIGHLIGHTS STRIP */
+  .highlights{
+    display:flex;
+    overflow-x:auto;
+    gap:10px;
+    padding:18px 20px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .highlights::-webkit-scrollbar{display:none;}
+  .pill{
+    flex:0 0 auto;
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    color:var(--gold-light);
+    font-size:12.5px;
+    padding:9px 16px;
+    border-radius:30px;
+    white-space:nowrap;
+    font-weight:500;
+    text-decoration:none;
+    cursor:pointer;
+    transition:background 0.2s,border-color 0.2s;
+  }
+  .pill:active, .pill:hover{
+    background:var(--bg-card2);
+    border-color:var(--gold);
+  }
+
+  .zoomable{cursor:zoom-in;}
+
+  /* LIGHTBOX */
+  .lightbox{
+    position:fixed;
+    inset:0;
+    z-index:999;
+    background:rgba(8,8,10,0.94);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img{
+    max-width:100%;
+    max-height:85vh;
+    width:auto;
+    border-radius:10px;
+    object-fit:contain;
+  }
+  .lightbox-close{
+    position:absolute;
+    top:18px;
+    right:20px;
+    width:40px;height:40px;
+    border-radius:50%;
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    color:var(--text);
+    font-size:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+  }
+
+  /* SECTION TITLES */
+  .section{padding:36px 0 8px;}
+  .section-label{
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:700;
+    margin-bottom:6px;
+  }
+  .section-title{
+    font-size:22px;
+    font-weight:700;
+    margin-bottom:18px;
+  }
+
+  /* OVERVIEW CARD */
+  .overview-card{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:20px;
+    margin-bottom:14px;
+  }
+  .overview-card h3{
+    font-size:15px;
+    color:var(--gold-light);
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .overview-card p{
+    font-size:14px;
+    color:var(--text-dim);
+  }
+  .price{
+    font-size:20px;
+    color:var(--gold);
+    font-weight:700;
+  }
+
+  /* DAY TIMELINE */
+  .day-block{margin-bottom:46px;scroll-margin-top:54px;}
+  .day-header{
+    position:relative;
+    margin-bottom:18px;
+  }
+  .day-tag{
+    display:inline-block;
+    font-size:11px;
+    letter-spacing:2px;
+    color:var(--bg);
+    background:var(--gold);
+    padding:4px 12px;
+    border-radius:20px;
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .day-title{
+    font-size:21px;
+    font-weight:700;
+    line-height:1.4;
+  }
+  .day-highlight{
+    font-size:13.5px;
+    color:var(--text-dim);
+    margin-top:6px;
+    padding-left:14px;
+    border-left:2px solid var(--gold);
+  }
+
+  .day-photo{
+    border-radius:14px;
+    overflow:hidden;
+    margin:16px 0;
+    aspect-ratio:4/3;
+  }
+
+  .timeline{
+    position:relative;
+    padding-left:24px;
+    border-left:1px solid var(--line);
+  }
+  .t-item{
+    position:relative;
+    padding-bottom:22px;
+  }
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:"";
+    position:absolute;
+    left:-29px;
+    top:5px;
+    width:9px;height:9px;
+    border-radius:50%;
+    background:var(--gold);
+    border:2px solid var(--bg);
+    box-shadow:0 0 0 1px var(--gold);
+  }
+  .t-time{
+    font-size:13px;
+    color:var(--gold-light);
+    font-weight:700;
+    margin-bottom:4px;
+    letter-spacing:0.5px;
+  }
+  .t-card{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 16px;
+  }
+  .t-card h4{
+    font-size:14.5px;
+    margin-bottom:6px;
+    font-weight:600;
+  }
+  .h4-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:6px;
+  }
+  .h4-row h4{margin-bottom:0;}
+  .nav-link{
+    flex:0 0 auto;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    font-size:11.5px;
+    color:var(--bg);
+    background:var(--gold);
+    padding:5px 10px;
+    border-radius:20px;
+    font-weight:700;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .nav-link:active{opacity:0.8;}
+
+  /* PRICE CHIPS */
+  .price-box{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin:4px 0 10px;
+  }
+  .price-chip{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    background:linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    color:#2a210f;
+    border-radius:10px;
+    padding:9px 13px;
+  }
+  .price-chip .pc-label{
+    font-size:12.5px;
+    font-weight:600;
+    line-height:1.3;
+  }
+  .price-chip .pc-amount{
+    font-size:15px;
+    font-weight:800;
+    white-space:nowrap;
+  }
+  .price-chip.recommend{
+    box-shadow:0 0 0 1.5px var(--gold) inset;
+  }
+  .price-chip .pc-badge{
+    font-size:10px;
+    background:rgba(15,15,18,0.18);
+    padding:2px 7px;
+    border-radius:8px;
+    margin-right:6px;
+    font-weight:700;
+  }
+  .t-card ul{
+    list-style:none;
+    font-size:13px;
+    color:var(--text-dim);
+  }
+  .t-card ul li{
+    position:relative;
+    padding-left:14px;
+    margin-bottom:4px;
+  }
+  .t-card ul li::before{
+    content:"·";
+    position:absolute;
+    left:0;
+    color:var(--gold);
+  }
+  .t-card .tag-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:8px;
+  }
+  .tag{
+    font-size:11px;
+    background:var(--bg-card2);
+    color:var(--gold-light);
+    padding:3px 9px;
+    border-radius:8px;
+    border:1px solid var(--line);
+  }
+
+  /* food card */
+  .food-note{
+    margin-top:8px;
+    font-size:12.5px;
+    color:var(--text-dim);
+    background:var(--bg-card2);
+    border-radius:10px;
+    padding:10px 12px;
+  }
+  .food-note b{color:var(--gold-light);}
+
+  /* TRANSPORT GRID */
+  .transport-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+  .transport-card{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px;
+  }
+  .transport-card .t-name{
+    font-size:13px;
+    color:var(--gold);
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:8px;
+    text-transform:uppercase;
+  }
+  .transport-card p{font-size:13.5px;color:var(--text-dim);margin-bottom:4px;}
+  .transport-card .big{
+    font-size:18px;
+    color:var(--text);
+    font-weight:700;
+  }
+
+  /* PACKING / TIPS LIST */
+  .info-card{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 18px;
+    margin-bottom:12px;
+  }
+  .info-card h4{
+    font-size:14px;
+    color:var(--gold-light);
+    margin-bottom:8px;
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+  .info-card p, .info-card li{
+    font-size:13.5px;
+    color:var(--text-dim);
+  }
+  .info-card ol{padding-left:18px;}
+  .info-card ol li{margin-bottom:6px;}
+
+  /* WEATHER */
+  .weather-row{
+    display:flex;
+    gap:10px;
+  }
+  .weather-card{
+    flex:1;
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 10px;
+    text-align:center;
+  }
+  .weather-card .wd{font-size:11px;color:var(--text-dim);margin-bottom:6px;}
+  .weather-card .wt{font-size:12.5px;color:var(--gold-light);margin-bottom:8px;}
+  .weather-card .wtemp{font-size:16px;font-weight:700;}
+
+  footer{
+    text-align:center;
+    padding:50px 20px 60px;
+    color:var(--text-dim);
+    font-size:12px;
+    letter-spacing:1px;
+  }
+  footer .gold-line{
+    width:40px;height:1px;
+    background:var(--gold);
+    margin:0 auto 16px;
+  }
+
+  @media(min-width:600px){
+    .hero h1{font-size:40px;}
+    .transport-grid{grid-template-columns:1fr 1fr;}
+  }
+
+  /* QUICK NAV */
+  .quicknav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:500;
+    display:flex;
+    background:rgba(15,15,18,0.86);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    transform:translateY(-100%);
+    transition:transform 0.25s ease;
+  }
+  .quicknav.show{transform:translateY(0);}
+  .quicknav-inner{
+    max-width:560px;
+    margin:0 auto;
+    width:100%;
+    display:flex;
+  }
+  .qn-btn{
+    flex:1;
+    text-align:center;
+    padding:13px 6px;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--text-dim);
+    border-bottom:2px solid transparent;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .qn-btn.active{
+    color:var(--gold-light);
+    border-bottom-color:var(--gold);
+  }
+</style>
+</head>
+<body>
+
+  <!-- QUICK NAV -->
+  <div class="quicknav" id="quicknav">
+    <div class="quicknav-inner">
+      <div class="qn-btn" data-jump="day1">DAY 1 沙漠</div>
+      <div class="qn-btn" data-jump="day2">DAY 2 丹霞草原</div>
+      <div class="qn-btn" data-jump="day3">DAY 3 敕勒川</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img class="zoomable" src="https://images.unsplash.com/photo-1547234935-80c7145ec969?q=80&w=1200&auto=format&fit=crop" alt="库布齐沙漠">
+    <div class="hero-content">
+      <div class="hero-eyebrow">团建攻略 · 7月17日-7月19日</div>
+      <h1>北京<span class="arrow">→</span>呼和浩特<br>三天两晚团建攻略</h1>
+      <div class="hero-sub">双草原对比 · 零回头路 · 黄金时段游玩</div>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHTS -->
+  <div class="highlights">
+    <a class="pill" data-jump="day1">🏜 沙漠日落</a>
+    <a class="pill" data-jump="day2">🌲 森林溪流</a>
+    <a class="pill" data-jump="day2">🏔 丹霞地貌</a>
+    <a class="pill" data-jump="day2">🌾 天赐草原</a>
+    <a class="pill" data-jump="day3">🌻 敕勒川草原</a>
+  </div>
+
+  <div class="container">
+
+    <!-- OVERVIEW -->
+    <div class="section">
+      <div class="section-label">Overview</div>
+      <div class="section-title">行程总览</div>
+
+      <div class="overview-card">
+        <h3>✅ 核心亮点</h3>
+        <p>一次解锁：沙漠日落 + 森林溪流 + 丹霞 + 两大草原（红石崖天赐草原 + 敕勒川高山草原），双草原对比，零回头路，每一站都掐着黄金时段去。</p>
+      </div>
+
+      <div class="overview-card">
+        <h3>✅ 出行时间</h3>
+        <p>7月17日 - 7月19日（共三天两晚，第二天可加入即两天一晚）</p>
+      </div>
+    </div>
+
+    <!-- TRANSPORT -->
+    <div class="section">
+      <div class="section-label">Transportation</div>
+      <div class="section-title">交通方式</div>
+      <div class="transport-grid">
+        <div class="transport-card">
+          <div class="t-name">方式一 · 自驾</div>
+          <p>总里程约 1380 公里 · 两人一车</p>
+          <p class="big">人均约 1711-2036 元</p>
+        </div>
+        <div class="transport-card">
+          <div class="t-name">方式二 · 高铁+租车</div>
+          <p>北京 — 呼和浩特东，取还车：东站北广场地下停车场 A 区（一嗨/神州/瑞卡），步行5分钟</p>
+          <p class="big">人均约 1674-2084 元</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 1 -->
+    <div class="section day-block" id="day1">
+      <div class="day-header">
+        <div class="day-tag">DAY 1</div>
+        <div class="day-title">北京 → 库布齐沙漠响沙湾<br>（沙漠日落专场）</div>
+        <div class="day-highlight">核心亮点：避开正午暴晒，黄金时段玩沙漠，看绝美沙漠日落</div>
+      </div>
+
+      <div class="day-photo">
+        <img class="zoomable" src="https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=900&auto=format&fit=crop" alt="沙漠日落">
+      </div>
+
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-time">出发 · 路线</div>
+          <div class="t-card">
+            <h4>自驾</h4>
+            <ul>
+              <li>路线：北京→G6京藏高速→G65包茂高速→达拉特旗</li>
+              <li>里程约643公里，预计7小时（含2次服务区休息），过路费241元</li>
+            </ul>
+            <h4 style="margin-top:10px;">高铁+租车</h4>
+            <ul>
+              <li>推荐 G2461 次（北京北 08:03 → 呼和浩特东 10:12），2小时9分</li>
+              <li>东站北广场地下停车场 A 区取车，步行5分钟</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-time">午间</div>
+          <div class="t-card">
+            <div class="h4-row">
+              <h4>集合 · 入住 · 午餐</h4>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E8%BE%BE%E6%8B%89%E7%89%B9%E6%97%97" target="_blank" rel="noopener">📍 导航</a>
+            </div>
+            <ul>
+              <li>集合地点：达拉特旗，办理酒店入住，酒店午休</li>
+              <li>午餐自理，推荐蒙式烩菜、羊肉面，人均30元，量大实惠</li>
+            </ul>
+            <div class="food-note"><b>小贴士：</b>在镇上买好水和零食，景区内物价高3-5倍</div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-time">15:00 - 19:30</div>
+          <div class="t-card">
+            <div class="h4-row">
+              <h4>响沙湾景区（营业时间 8:30-19:00）</h4>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%93%8D%E6%B2%99%E6%B9%BE%E6%99%AF%E5%8C%BA" target="_blank" rel="noopener">📍 导航</a>
+            </div>
+            <div class="price-box">
+              <div class="price-chip">
+                <div class="pc-label"><span class="pc-badge">必买</span>大门票+往返索道</div>
+                <div class="pc-amount">130 元/人</div>
+              </div>
+              <div class="price-chip recommend">
+                <div class="pc-label"><span class="pc-badge">推荐</span>悦沙岛套票（含大门票+索道，水上乐园，美团购票）</div>
+                <div class="pc-amount">239 元/人</div>
+              </div>
+              <div class="price-chip">
+                <div class="pc-label"><span class="pc-badge">备选</span>换仙沙岛套票（沙漠冲浪车/高空滑索/过山车）</div>
+                <div class="pc-amount">259 元/人</div>
+              </div>
+            </div>
+            <div class="tag-row">
+              <span class="tag">沙漠小火车</span>
+              <span class="tag">水上乐园</span>
+              <span class="tag">鄂尔多斯婚礼演出</span>
+              <span class="tag">骑骆驼</span>
+              <span class="tag">沙漠日落</span>
+            </div>
+            <div class="food-note">
+              <b>游玩顺序：</b><br>
+              15:00-16:00 乘索道进入沙漠，坐沙漠小火车观光，拍沙漠大片<br>
+              16:00-17:30 玩水上乐园、看沙雕园、欣赏16:00场《鄂尔多斯婚礼》演出<br>
+              17:30-18:30 骑骆驼穿越沙丘（此时不晒，骆驼也精神）<br>
+              18:30-19:30 爬最高沙丘，看沙漠日落（7月日落约19:00，金红色沙丘绝美）
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-time">19:30</div>
+          <div class="t-card">
+            <h4>返回达拉特旗</h4>
+            <ul><li>晚餐住宿，晚餐（喝酒、吹牛套餐）</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="section day-block" id="day2">
+      <div class="day-header">
+        <div class="day-tag">DAY 2</div>
+        <div class="day-title">达拉特旗 → 大青山 →<br>红石崖天赐高山草原（丹霞日落）</div>
+        <div class="day-highlight">核心亮点：上午呼和浩特人文参观，下午森林避暑，丹霞+高山草原双景，红石崖看日落</div>
+      </div>
+
+      <div class="day-photo">
+        <img class="zoomable" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop" alt="高山草原">
+      </div>
+
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-time">07:30 - 08:00</div>
+          <div class="t-card">
+            <h4>早餐</h4>
+            <ul><li>推荐当地羊杂碎、焙子，暖胃又顶饱</li></ul>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-time">08:00 - 10:00</div>
+          <div class="t-card">
+            <h4>自驾前往呼和浩特</h4>
+            <ul>
+              <li>路线：达拉特旗→G65包茂高速→G6京藏高速→呼和浩特市区</li>
+              <li>里程约130公里，预计2小时</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-time">10:00 - 12:30</div>
+          <div class="t-card">
+            <div class="h4-row">
+              <h4>大召寺 / 内蒙古博物院（二选一）</h4>
+            </div>
+            <div class="tag-row" style="margin-bottom:8px;">
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%A4%A7%E5%8F%AC%E5%AF%BA" target="_blank" rel="noopener">📍 大召寺导航</a>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%86%85%E8%92%99%E5%8F%A4%E5%8D%9A%E7%89%A9%E9%99%A2" target="_blank" rel="noopener">📍 博物院导航</a>
+            </div>
+            <div class="price-box">
+              <div class="price-chip">
+                <div class="pc-label">大召寺门票（学生半价，65岁以上免票）</div>
+                <div class="pc-amount">35 元/人</div>
+              </div>
+            </div>
+            <ul>
+              <li>开放时间：夏季8:00-18:30（18:00停止入园）</li>
+              <li>必打卡：大召三绝（银佛、龙雕、壁画）、大雄宝殿（康熙皇帝曾驻跸于此）、红墙金顶租蒙古袍拍照（50元/小时）</li>
+              <li>建议租讲解器20元/台，游览2.5小时</li>
+            </ul>
+            <div class="food-note">
+              <b>内蒙古博物院</b>：免费，凭身份证预约入馆，停车免费。必看：查干诺尔龙化石（亚洲最大）、匈奴王金冠、草原天骄展厅
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-time">12:30 - 13:30</div>
+          <div class="t-card">
+            <div class="h4-row">
+              <h4>市区午餐</h4>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E6%A0%BC%E6%97%A5%E5%8B%92%E9%98%BF%E5%A6%88%E5%A5%B6%E8%8C%B6%E9%A6%86" target="_blank" rel="noopener">📍 导航</a>
+            </div>
+            <ul><li>推荐格日勒阿妈奶茶馆，咸奶茶锅+黄油饼+奶皮子酸奶，人均40元</li></ul>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-time">13:30 - 17:00</div>
+          <div class="t-card">
+            <div class="h4-row">
+              <h4>大青山国家登山健身步道</h4>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E6%B0%B4%E7%A3%A8%E6%9D%91" target="_blank" rel="noopener">📍 导航</a>
+            </div>
+            <ul>
+              <li>导航：水磨村入口，距市区20公里，30分钟车程；停车10元/天</li>
+              <li>常规推荐：东北部环线（5公里，3小时），穿松林、过溪流、走山脊，7月野花遍地，温度比市区低5-8℃</li>
+              <li>亲子/老人：东部小环线（2.5公里，1.5小时），全程木栈道缓坡</li>
+              <li>体力党：西部环线（8公里，4小时），深入原始森林，人更少更安静</li>
+            </ul>
+            <div class="food-note"><b>必备：</b>防滑运动鞋、薄防风外套（山顶风大）、1-2L水</div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-time">17:00 - 17:40</div>
+          <div class="t-card">
+            <h4>前往红石崖</h4>
+            <ul>
+              <li>路线：水磨村→S104省道→红石崖国家生态公园，40公里，40分钟</li>
+              <li>沿途惊喜：网红U型公路，随时停车拍自驾大片</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-time">17:40 - 19:30</div>
+          <div class="t-card">
+            <div class="h4-row">
+              <h4>红石崖国家生态公园（日落专场）</h4>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E7%BA%A2%E7%9F%B3%E5%B4%96%E5%9B%BD%E5%AE%B6%E7%94%9F%E6%80%81%E5%85%AC%E5%9B%AD" target="_blank" rel="noopener">📍 导航</a>
+            </div>
+            <div class="price-box">
+              <div class="price-chip">
+                <div class="pc-label">大门票</div>
+                <div class="pc-amount">58 元/人</div>
+              </div>
+              <div class="price-chip recommend">
+                <div class="pc-label"><span class="pc-badge">必买</span>环保车（景点跨度大）</div>
+                <div class="pc-amount">38 元/人</div>
+              </div>
+            </div>
+            <div class="tag-row">
+              <span class="tag">天赐高山草原</span>
+              <span class="tag">阴山赤壁</span>
+              <span class="tag">丹霞日落</span>
+            </div>
+            <div class="food-note">
+              <b>玩法：</b>先乘环保车到天赐高山草原，十万亩无围栏原生草甸，牛羊散落其间 → 步行到红石崖主崖，赤色丹霞地貌在夕阳下泛着金红色光泽 → 18:30-19:30 在观景台看红石崖日落，被誉为"阴山赤壁"
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-time">19:30 - 20:30</div>
+          <div class="t-card">
+            <div class="h4-row">
+              <h4>返回呼和浩特市区</h4>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%91%BC%E5%92%8C%E6%B5%A9%E7%89%B9%E5%B8%82%E6%96%B0%E5%9F%8E%E5%8C%BA" target="_blank" rel="noopener">📍 导航</a>
+            </div>
+            <ul><li>20:30 入住新城区酒店，晚餐（喝酒吹牛专场）</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 3 -->
+    <div class="section day-block" id="day3">
+      <div class="day-header">
+        <div class="day-tag">DAY 3</div>
+        <div class="day-title">敕勒川高山草原深度游<br>→ 返程北京</div>
+        <div class="day-highlight">核心亮点：原生立体草原+黄花盛花期+山顶全景，徒步/观光车任选</div>
+      </div>
+
+      <div class="day-photo">
+        <img class="zoomable" src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?q=80&w=900&auto=format&fit=crop" alt="敕勒川草原">
+      </div>
+
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-time">07:30 - 08:00</div>
+          <div class="t-card">
+            <div class="h4-row">
+              <h4>早餐</h4>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%BE%B7%E9%A1%BA%E6%BA%90%E7%83%A7%E5%96%A4" target="_blank" rel="noopener">📍 导航</a>
+            </div>
+            <ul><li>推荐德顺源烧麦，一两8个纯羊肉烧麦，皮薄爆汁，人均30元</li></ul>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-time">08:00 - 12:30</div>
+          <div class="t-card">
+            <div class="h4-row">
+              <h4>敕勒川高山草原深度游</h4>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E9%BB%84%E8%8A%B1%E7%AA%9D%E9%93%BA%E9%AB%98%E5%B1%B1%E8%8D%89%E5%8E%9F" target="_blank" rel="noopener">📍 导航</a>
+            </div>
+            <ul>
+              <li>08:00-08:40 自驾前往（30公里，40分钟，导航"黄花窝铺高山草原"）</li>
+              <li>停车10元/天</li>
+              <li>徒步版：往返约10公里，4小时，沿途穿越松林和黄花田</li>
+            </ul>
+            <div class="price-box">
+              <div class="price-chip recommend">
+                <div class="pc-label"><span class="pc-badge">推荐</span>观光车往返，直达山顶敖包观景台</div>
+                <div class="pc-amount">38 元/人</div>
+              </div>
+            </div>
+            <div class="tag-row">
+              <span class="tag">山顶敖包观景台</span>
+              <span class="tag">黄花田核心区</span>
+              <span class="tag">松林草甸过渡带</span>
+              <span class="tag">牧羊人小道</span>
+            </div>
+            <div class="food-note">
+              <b>必打卡：</b>山顶敖包观景台 360°无遮挡视野，远眺呼和浩特全城；7月漫山遍野野生黄花（萱草）盛开；草原与落叶松林交错，层次感极强。<br>
+              <b>最佳拍摄时间：</b>09:00-11:00，光线柔和，草原色彩最鲜艳
+            </div>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-time">12:30 - 13:30</div>
+          <div class="t-card">
+            <div class="h4-row">
+              <h4>草原附近午餐</h4>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E9%BB%84%E8%8A%B1%E7%AA%9D%E9%93%BA%E8%92%99%E5%8F%A4%E5%8C%85%E9%A4%90%E5%8E%85" target="_blank" rel="noopener">📍 导航</a>
+            </div>
+            <ul><li>推荐蒙古包餐厅，现杀羊肉串、野韭菜炒鸡蛋，人均50元</li></ul>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-time">返程</div>
+          <div class="t-card">
+            <h4>自驾</h4>
+            <ul>
+              <li>路线：敕勒川草原→G6京藏高速→北京，约480公里，预计5.5小时</li>
+              <li>建议16:00前通过张家口段，避开进京高峰</li>
+            </ul>
+            <div class="h4-row" style="margin-top:10px;">
+              <h4>高铁</h4>
+              <a class="nav-link" href="https://uri.amap.com/search?keyword=%E5%91%BC%E5%92%8C%E6%B5%A9%E7%89%B9%E4%B8%9C%E7%AB%99" target="_blank" rel="noopener">📍 呼和浩特东站导航</a>
+            </div>
+            <ul>
+              <li>13:30-14:10 自驾返回呼和浩特东站（30公里，40分钟）</li>
+              <li>14:10-14:40 还车+办理手续</li>
+              <li>14:40-16:00 东站休息+买伴手礼（推荐奶食品、牛肉干）</li>
+              <li>16:17 返程：G2486次（呼和浩特东16:17→北京北18:33），2小时16分</li>
+              <li>18:33 抵达北京北站，行程结束</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEATHER -->
+    <div class="section">
+      <div class="section-label">Weather</div>
+      <div class="section-title">天气情况</div>
+      <div class="weather-row">
+        <div class="weather-card">
+          <div class="wd">7/17 周五</div>
+          <div class="wt">响沙湾 · 雨</div>
+          <div class="wtemp">29° / 19°</div>
+        </div>
+        <div class="weather-card">
+          <div class="wd">7/18 周六</div>
+          <div class="wt">呼市 · 局部多云</div>
+          <div class="wtemp">25° / 15°</div>
+        </div>
+        <div class="weather-card">
+          <div class="wd">7/19 周日</div>
+          <div class="wt">呼市 · 局部多云</div>
+          <div class="wtemp">25° / 15°</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PACKING -->
+    <div class="section">
+      <div class="section-label">Packing List</div>
+      <div class="section-title">必备装备清单（7月专属）</div>
+
+      <div class="info-card">
+        <h4>🏜 沙漠专属</h4>
+        <p>防沙鞋套（提前网购10元/双，景区卖20元）、魔术头巾、墨镜、手机防沙袋</p>
+      </div>
+      <div class="info-card">
+        <h4>☀️ 防晒必备</h4>
+        <p>SPF50+ 高倍防晒霜（每2小时补涂）、宽檐帽、防晒衣、防晒手套</p>
+      </div>
+      <div class="info-card">
+        <h4>👕 衣物</h4>
+        <p>速干衣裤、薄款防风外套（早晚温差大）、舒适运动鞋、长裤（防沙防蚊虫）</p>
+      </div>
+      <div class="info-card">
+        <h4>🎒 其他</h4>
+        <p>充电宝、湿巾、创可贴、肠胃药、感冒药、足够的饮用水（每人每天至少2L）</p>
+      </div>
+      <div class="info-card">
+        <h4>🚗 自驾</h4>
+        <p>检查轮胎、机油、防冻液，备玻璃水，提前下载离线地图</p>
+      </div>
+    </div>
+
+    <!-- TIPS -->
+    <div class="section">
+      <div class="section-label">Tips</div>
+      <div class="section-title">避坑指南</div>
+      <div class="info-card">
+        <ol>
+          <li><b style="color:var(--gold-light)">沙漠避坑：</b>绝对不要在正午12:00-15:00进沙漠；不要穿凉鞋或拖鞋；电子设备做好防沙保护</li>
+          <li><b style="color:var(--gold-light)">红石崖避坑：</b>景区内卫生间少，入口处提前解决；盘山路弯道多，减速慢行</li>
+          <li><b style="color:var(--gold-light)">草原避坑：</b>骑马、射箭等项目提前谈好价格和时长；不要碾压草原</li>
+          <li><b style="color:var(--gold-light)">自驾避坑：</b>京藏高速大货车多，保持车距；山区部分区域信号弱，提前下载离线地图</li>
+          <li><b style="color:var(--gold-light)">美食避坑：</b>呼市烧麦按"两"卖（指皮的重量），一两8个，两人点2两足够</li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="gold-line"></div>
+    北京 · 呼和浩特 三天两晚团建攻略<br>
+    Designed for the team · 2026
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-close" id="lightboxClose">✕</div>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+
+  <script>
+    document.querySelectorAll('[data-jump]').forEach(function(el){
+      el.addEventListener('click', function(){
+        var target = document.getElementById(el.getAttribute('data-jump'));
+        if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightboxImg');
+    document.querySelectorAll('img.zoomable').forEach(function(img){
+      img.addEventListener('click', function(){
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('open');
+      });
+    });
+    function closeLightbox(){
+      lightbox.classList.remove('open');
+      lightboxImg.src = '';
+    }
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e){
+      if(e.target === lightbox) closeLightbox();
+    });
+
+    // quick nav show/hide on scroll
+    var quicknav = document.getElementById('quicknav');
+    var heroEl = document.querySelector('.hero');
+    function toggleQuicknav(){
+      if(window.scrollY > heroEl.offsetHeight * 0.7){
+        quicknav.classList.add('show');
+      } else {
+        quicknav.classList.remove('show');
+      }
+    }
+    window.addEventListener('scroll', toggleQuicknav, {passive:true});
+    toggleQuicknav();
+
+    // highlight active day in quick nav
+    var qnBtns = document.querySelectorAll('.qn-btn');
+    var dayBlocks = document.querySelectorAll('.day-block');
+    var dayObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          qnBtns.forEach(function(btn){
+            btn.classList.toggle('active', btn.getAttribute('data-jump') === entry.target.id);
+          });
+        }
+      });
+    }, {rootMargin:'-50% 0px -45% 0px'});
+    dayBlocks.forEach(function(block){ dayObserver.observe(block); });
+  </script>
+
+</body>
+</html>
